@@ -1,0 +1,22 @@
+# ==========================================
+# CONFIGURACIÓN DE BASE DE DATOS - POSTGRESQL
+# ==========================================
+
+#DB_USER=postgres
+#DB_HOST=localhost
+#DB_NAME=frontend
+#DB_PASSWORD=esterno99
+#DB_PORT=1205
+
+# ==========================================
+# CONFIGURACIÓN DEL SERVIDOR
+# ==========================================
+
+#PORT=1205
+#NODE_ENV=development
+
+# ==========================================
+# SEGURIDAD - JWT
+# ==========================================
+
+#JWT_SECRET=tu_clave_secreta_muy_larga_y_segura_cambiar_en_produccion_123456789

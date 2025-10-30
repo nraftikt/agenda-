@@ -1,0 +1,7 @@
+### 3. Configurar base de datos
+```bash
+# Conectar a PostgreSQL y crear la base de datos (si no existe)
+createdb frontend
+
+# Ejecutar el esquema inicial
+psql -d frontend -f database/schema.sql
