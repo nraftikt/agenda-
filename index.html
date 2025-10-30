@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Tareas - TaskManager</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">📚</div>
+                <span style="font-weight: bold; font-size: 18px;">TaskManager</span>
+            </div>
+
+            <div class="nav-menu">
+                <div class="nav-item active" data-view="principal">
+                    <span class="nav-icon">🏠</span>
+                    <span>Principal</span>
+                </div>
+                <div class="nav-item" data-view="perfil">
+                    <span class="nav-icon">👤</span>
+                    <span>Perfil</span>
+                </div>
+                <div class="nav-item" data-view="clases">
+                    <span class="nav-icon">📖</span>
+                    <span>Clases</span>
+                </div>
+                <div class="nav-item" data-view="tareas">
+                    <span class="nav-icon">✅</span>
+                    <span>Tareas</span>
+                </div>
+            </div>
+
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <span id="theme-text">🌙 Modo Oscuro</span>
+                <span id="theme-icon">☀️</span>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="header">
+                <h1 id="page-title">Dashboard Principal</h1>
+                <div class="user-info">
+                    <div>
+                        <div style="font-weight: bold;" id="user-name">Cargando...</div>
+                        <div style="font-size: 14px; color: var(--text-secondary);" id="user-role">Estudiante</div>
+                    </div>
+                    <div class="user-avatar" id="user-avatar">US</div>
+                    <button class="logout-btn" onclick="logout()">Cerrar Sesión</button>
+                </div>
+            </div>
+
+            <!-- PRINCIPAL VIEW -->
+            <div id="principal-view" class="view-content">
+                <div class="card welcome-section">
+                    <h2 id="welcome-message">¡Bienvenido de vuelta! 👋</h2>
+                    <p style="color: var(--text-secondary); font-size: 18px;">¿Qué deseas hacer hoy?</p>
+                    
+                    <div class="action-buttons">
+                        <button class="btn-primary" onclick="navigateTo('clases')">
+                            📖 Ver Clases
+                        </button>
+                        <button class="btn-primary" onclick="navigateTo('tareas')">
+                            ✅ Marcar Tarea
+                        </button>
+                    </div>
+
+                    <div style="margin-top: 40px;">
+                        <span class="stats-badge badge-success" id="stats-completadas">0 Tareas Completadas</span>
+                        <span class="stats-badge badge-warning" id="stats-pendientes">0 Tareas Pendientes</span>
+                        <span class="stats-badge badge-danger" id="stats-vencidas">0 Tareas Vencidas</span>
+                    </div>
+
+                    <!-- TAREAS RECIENTES -->
+                    <div style="margin-top: 40px;">
+                        <h3 style="margin-bottom: 15px;">📅 Tareas Próximas</h3>
+                        <div id="tareas-proximas">
+                            <!-- Tareas próximas se cargarán aquí -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PERFIL VIEW -->
+            <div id="perfil-view" class="view-content hidden">
+                <div class="card profile-section">
+                    <h2 style="margin-bottom: 30px;">Mi Perfil</h2>
+                    
+                    <div class="form-group">
+                        <label>Nombre Completo</label>
+                        <input type="text" value="" id="nombre" placeholder="Ingresa tu nombre" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" value="" id="email" placeholder="correo@universidad.edu" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Teléfono / WhatsApp</label>
+                        <input type="tel" value="" id="telefono" placeholder="+591 12345678">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Carrera</label>
+                        <input type="text" value="" id="carrera" placeholder="Ingeniería en Sistemas">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Semestre</label>
+                        <input type="text" value="" id="semestre" placeholder="6to Semestre">
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn-secondary" onclick="guardarPerfil()">💾 Guardar Cambios</button>
+                        <button class="btn-tertiary" onclick="cambiarPassword()">🔒 Cambiar Contraseña</button>
+                    </div>
+
+                    <div id="perfil-message" class="message-hidden"></div>
+                </div>
+            </div>
+
+            <!-- CLASES VIEW -->
+            <div id="clases-view" class="view-content hidden">
+                <div class="view-header">
+                    <h2>Mis Clases</h2>
+                    <div class="view-stats">
+                        <span id="total-clases">0 clases</span>
+                        <span id="total-tareas-clases">0 tareas totales</span>
+                    </div>
+                </div>
+                
+                <div class="clases-grid" id="clases-container">
+                    <div class="loading-message">Cargando clases...</div>
+                </div>
+            </div>
+
+
+
+            <!-- FORMULARIO PARA CREAR TAREAS -->
+<div class="card" style="margin-bottom: 30px;">
+    <h3 style="margin-bottom: 20px;">➕ Crear Nueva Tarea</h3>
+    <form id="form-nueva-tarea">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+            <div class="form-group">
+                <label>Título</label>
+                <input type="text" id="nueva-tarea-titulo" placeholder="Título de la tarea" required>
+            </div>
+            <div class="form-group">
+                <label>Materia</label>
+                <select id="nueva-tarea-materia" required>
+                    <option value="">Seleccionar...</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Prioridad</label>
+                <select id="nueva-tarea-prioridad" required>
+                    <option value="baja">Baja</option>
+                    <option value="media" selected>Media</option>
+                    <option value="alta">Alta</option>
+                </select>
+            </div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px;">
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea id="nueva-tarea-descripcion" placeholder="Descripción de la tarea" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Fecha Vencimiento</label>
+                <input type="date" id="nueva-tarea-fecha" required>
+            </div>
+            <div class="form-group" style="display: flex; align-items: flex-end;">
+                <button type="submit" class="btn-primary" style="width: 100%;">
+                    ➕ Crear Tarea
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+            <!-- TAREAS VIEW -->
+            <div id="tareas-view" class="view-content hidden">
+                <div class="view-header">
+                    <h2>Gestión de Tareas</h2>
+                    <div class="view-stats">
+                        <span class="badge-success" id="tareas-actuales-count">0 actuales</span>
+                        <span class="badge-danger" id="tareas-vencidas-count">0 vencidas</span>
+                    </div>
+                </div>
+
+                <div class="tareas-container">
+                    <div class="tareas-section">
+                        <h2>📋 Tareas Actuales</h2>
+                        <div class="card" id="tareas-actuales">
+                            <div class="loading-message">Cargando tareas actuales...</div>
+                        </div>
+                    </div>
+
+                    <div class="tareas-section">
+                        <h2>⚠️ Tareas Vencidas</h2>
+                        <div class="card" id="tareas-vencidas">
+                            <div class="loading-message">Cargando tareas vencidas...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

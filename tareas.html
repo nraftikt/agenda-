@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Tareas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Mis Tareas</h1>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="materias.html">Materias</a>
+                <a href="perfil.html">Perfil</a>
+                <a href="#" onclick="cerrarSesion()">Cerrar Sesión</a>
+            </nav>
+        </header>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Total</h3>
+                <span id="total-tareas">0</span>
+            </div>
+            <div class="stat-card">
+                <h3>Completadas</h3>
+                <span id="tareas-completadas">0</span>
+            </div>
+            <div class="stat-card">
+                <h3>Pendientes</h3>
+                <span id="tareas-pendientes">0</span>
+            </div>
+            <div class="stat-card">
+                <h3>Vencidas</h3>
+                <span id="tareas-vencidas">0</span>
+            </div>
+        </div>
+
+        <div class="tareas-container">
+            <h2>Lista de Tareas</h2>
+            <div id="lista-tareas" class="tareas-list">
+                <!-- Las tareas se cargarán aquí -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/tareas.js"></script>
+</body>
+</html>

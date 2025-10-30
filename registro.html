@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Student Planner</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Student Planner</h1>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">🏠 Inicio</a>
+                <a href="login.html" class="nav-link">🔐 Login</a>
+            </nav>
+        </header>
+
+        <div class="login-container">
+            <form id="registerForm" class="auth-form">
+                <h2>Crear Cuenta</h2>
+                
+                <div class="form-group">
+                    <label for="regNombre">Nombre Completo:</label>
+                    <input type="text" id="regNombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regEmail">Email:</label>
+                    <input type="email" id="regEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regPassword">Contraseña:</label>
+                    <input type="password" id="regPassword" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="regTelefono">Teléfono:</label>
+                    <input type="tel" id="regTelefono">
+                </div>
+
+                <div class="form-group">
+                    <label for="regCarrera">Carrera:</label>
+                    <input type="text" id="regCarrera" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="regSemestre">Semestre:</label>
+                    <input type="number" id="regSemestre" min="1" max="12" required>
+                </div>
+                
+                <button type="submit" class="btn-primary">Registrarse</button>
+                
+                <p class="auth-link">
+                    ¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,813 @@
+/* ==========================================
+   VARIABLES CSS - TEMA TOWA OPTIMIZADO
+   ========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colores principales Towa */
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-card: #0f3460;
+    --accent-purple: #9d4edd;
+    --accent-pink: #e85d75;
+    --accent-blue: #3a86ff;
+    --accent-green: #06ffa5;
+    --accent-yellow: #ffbe0b;
+    --accent-red: #ff006e;
+    
+    /* Textos */
+    --text-primary: #ffffff;
+    --text-secondary: #b8b8d1;
+    --text-muted: #8b9cb1;
+    
+    /* Utilidades */
+    --border-color: rgba(157, 78, 221, 0.3);
+    --shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 10px 30px rgba(157, 78, 221, 0.4);
+    --transition: all 0.3s ease;
+}
+
+body.light-mode {
+    --bg-primary: #f8f9fa;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --text-primary: #2d3748;
+    --text-secondary: #718096;
+    --text-muted: #a0aec0;
+    --border-color: rgba(157, 78, 221, 0.2);
+    --shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 10px 30px rgba(157, 78, 221, 0.2);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: var(--transition);
+    line-height: 1.6;
+}
+
+/* ==========================================
+   LAYOUT PRINCIPAL
+   ========================================== */
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ==========================================
+   SIDEBAR - ESTILO TOWA
+   ========================================== */
+
+.sidebar {
+    width: 280px;
+    background: var(--bg-secondary);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+    border-right: 1px solid var(--border-color);
+}
+
+.logo {
+    padding: 0 25px 30px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.logo-icon {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
+}
+
+.nav-menu {
+    flex: 1;
+    padding: 20px 0;
+}
+
+.nav-item {
+    padding: 16px 25px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-left: 4px solid transparent;
+    margin: 5px 0;
+    border-radius: 0 12px 12px 0;
+}
+
+.nav-item:hover {
+    background: linear-gradient(90deg, rgba(157, 78, 221, 0.1), transparent);
+    border-left-color: var(--accent-purple);
+    transform: translateX(5px);
+}
+
+.nav-item.active {
+    background: linear-gradient(90deg, rgba(157, 78, 221, 0.2), transparent);
+    border-left-color: var(--accent-purple);
+    color: var(--accent-purple);
+    font-weight: 600;
+}
+
+.nav-icon {
+    font-size: 20px;
+    width: 24px;
+    text-align: center;
+}
+
+.theme-toggle {
+    padding: 18px 25px;
+    border-top: 1px solid var(--border-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: var(--transition);
+    margin-top: auto;
+}
+
+.theme-toggle:hover {
+    background: rgba(157, 78, 221, 0.1);
+}
+
+/* ==========================================
+   CONTENIDO PRINCIPAL
+   ========================================== */
+
+.main-content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    background: var(--bg-primary);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header h1 {
+    font-size: 32px;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
+}
+
+.logout-btn {
+    padding: 12px 24px;
+    background: var(--accent-red);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 110, 0.4);
+}
+
+/* ==========================================
+   COMPONENTES REUTILIZABLES
+   ========================================== */
+
+.card {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 25px;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    padding: 18px 35px;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-secondary {
+    padding: 14px 28px;
+    background: var(--accent-blue);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(58, 134, 255, 0.4);
+}
+
+.btn-tertiary {
+    padding: 14px 28px;
+    background: transparent;
+    border: 2px solid var(--accent-purple);
+    border-radius: 12px;
+    color: var(--accent-purple);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.btn-tertiary:hover {
+    background: var(--accent-purple);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   VISTAS ESPECÍFICAS
+   ========================================== */
+
+/* VISTA PRINCIPAL */
+.welcome-section {
+    text-align: center;
+    padding: 40px;
+}
+
+.welcome-section h2 {
+    font-size: 42px;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+/* VISTA PERFIL */
+.profile-section {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 0 3px rgba(157, 78, 221, 0.1);
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+/* VISTA CLASES */
+.view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.view-stats {
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.clases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.clase-card {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 18px;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 2px solid transparent;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.clase-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+}
+
+.clase-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-purple);
+    box-shadow: var(--shadow-hover);
+}
+
+.clase-card h3 {
+    margin-bottom: 12px;
+    color: var(--accent-purple);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.tareas-count {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 12px;
+    background: rgba(157, 78, 221, 0.1);
+    border-radius: 8px;
+    display: inline-block;
+}
+
+/* VISTA TAREAS */
+.tareas-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.tareas-section h2 {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 24px;
+}
+
+.tarea-item-detalle {
+    background: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 18px;
+    border-left: 6px solid var(--accent-purple);
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.tarea-item-detalle:hover {
+    transform: translateX(8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.tarea-item-detalle.vencida {
+    border-left-color: var(--accent-red);
+}
+
+.tarea-contenido h4 {
+    margin: 0 0 8px 0;
+    color: var(--text-primary);
+    font-size: 18px;
+}
+
+.tarea-contenido p {
+    margin: 0 0 12px 0;
+    color: var(--text-secondary);
+}
+
+.tarea-meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.clase-badge {
+    background: rgba(157, 78, 221, 0.15);
+    color: var(--accent-purple);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.fecha {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.fecha.vencida-text {
+    color: var(--accent-red);
+    font-weight: bold;
+}
+
+.prioridad {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.prioridad.alta {
+    background: rgba(255, 0, 110, 0.2);
+    color: var(--accent-red);
+}
+
+.prioridad.media {
+    background: rgba(255, 190, 11, 0.2);
+    color: var(--accent-yellow);
+}
+
+.prioridad.baja {
+    background: rgba(6, 255, 165, 0.2);
+    color: var(--accent-green);
+}
+
+/* ==========================================
+   COMPONENTES ESPECIALES
+   ========================================== */
+
+/* TAREAS PRÓXIMAS */
+.tarea-item-small {
+    background: var(--bg-secondary);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--accent-yellow);
+    transition: var(--transition);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tarea-item-small:hover {
+    transform: translateX(5px);
+    background: rgba(255, 190, 11, 0.05);
+}
+
+.tarea-info-small strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.tarea-info-small span {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* BADGES Y ESTADÍSTICAS */
+.stats-badge {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
+}
+
+.stats-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.badge-success {
+    background: var(--accent-green);
+    color: var(--bg-primary);
+}
+
+.badge-warning {
+    background: var(--accent-yellow);
+    color: var(--bg-primary);
+}
+
+.badge-danger {
+    background: var(--accent-red);
+    color: white;
+}
+
+/* MENSAJES */
+.message-hidden {
+    display: none;
+}
+
+.message-success {
+    background: rgba(6, 255, 165, 0.1);
+    border: 1px solid var(--accent-green);
+    color: var(--accent-green);
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.message-error {
+    background: rgba(255, 0, 110, 0.1);
+    border: 1px solid var(--accent-red);
+    color: var(--accent-red);
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* ==========================================
+   UTILIDADES
+   ========================================== */
+
+.hidden {
+    display: none !important;
+}
+
+.loading-message {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-secondary);
+    font-size: 18px;
+}
+
+.no-tareas, .no-data {
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+    padding: 2rem;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 1024px) {
+    .tareas-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .clases-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 15px 0;
+    }
+    
+    .nav-menu {
+        display: flex;
+        padding: 10px 0;
+        overflow-x: auto;
+    }
+    
+    .nav-item {
+        flex: 0 0 auto;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+        border-radius: 0;
+        margin: 0 5px;
+        padding: 12px 15px;
+    }
+    
+    .nav-item:hover,
+    .nav-item.active {
+        border-left: none;
+        border-bottom-color: var(--accent-purple);
+        transform: translateY(-2px);
+    }
+    
+    .main-content {
+        padding: 20px;
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-primary {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .view-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .view-stats {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: 15px;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .clases-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .welcome-section h2 {
+        font-size: 32px;
+    }
+    
+    .header h1 {
+        font-size: 24px;
+    }
+}
+
+/* ==========================================
+   ANIMACIONES Y EFECTOS
+   ========================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.view-content {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.clase-card {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.tarea-item-detalle {
+    animation: fadeIn 0.4s ease-out;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-purple);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-pink);
+}
+
+
+
+/* Estilos para formularios */
+select, textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 16px;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 0 3px rgba(157, 78, 221, 0.1);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 60px;
+}
