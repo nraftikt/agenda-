@@ -65,7 +65,7 @@
                             📖 Ver Clases
                         </button>
                         <button class="btn-primary" onclick="navigateTo('tareas')">
-                            ✅ Marcar Tarea
+                            ✅ Gestionar Tareas
                         </button>
                     </div>
 
@@ -75,11 +75,10 @@
                         <span class="stats-badge badge-danger" id="stats-vencidas">0 Tareas Vencidas</span>
                     </div>
 
-                    <!-- TAREAS RECIENTES -->
                     <div style="margin-top: 40px;">
                         <h3 style="margin-bottom: 15px;">📅 Tareas Próximas</h3>
                         <div id="tareas-proximas">
-                            <!-- Tareas próximas se cargarán aquí -->
+                            <div class="loading-message">Cargando tareas...</div>
                         </div>
                     </div>
                 </div>
@@ -97,7 +96,7 @@
 
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" value="" id="email" placeholder="correo@universidad.edu" required>
+                        <input type="email" value="" id="email" placeholder="correo@universidad.edu" disabled>
                     </div>
 
                     <div class="form-group">
@@ -115,107 +114,84 @@
                         <input type="text" value="" id="semestre" placeholder="6to Semestre">
                     </div>
 
-                    <div class="form-actions">
-                        <button class="btn-secondary" onclick="guardarPerfil()">💾 Guardar Cambios</button>
-                        <button class="btn-tertiary" onclick="cambiarPassword()">🔒 Cambiar Contraseña</button>
-                    </div>
-
-                    <div id="perfil-message" class="message-hidden"></div>
+                    <button class="btn-secondary" onclick="guardarPerfil()">💾 Guardar Cambios</button>
                 </div>
             </div>
 
             <!-- CLASES VIEW -->
             <div id="clases-view" class="view-content hidden">
-                <div class="view-header">
-                    <h2>Mis Clases</h2>
-                    <div class="view-stats">
-                        <span id="total-clases">0 clases</span>
-                        <span id="total-tareas-clases">0 tareas totales</span>
-                    </div>
-                </div>
-                
+                <h2 style="margin-bottom: 20px;">Mis Clases</h2>
                 <div class="clases-grid" id="clases-container">
                     <div class="loading-message">Cargando clases...</div>
                 </div>
             </div>
 
-
-
-            <!-- FORMULARIO PARA CREAR TAREAS -->
-<div class="card" style="margin-bottom: 30px;">
-    <h3 style="margin-bottom: 20px;">➕ Crear Nueva Tarea</h3>
-    <form id="form-nueva-tarea">
-        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-            <div class="form-group">
-                <label>Título</label>
-                <input type="text" id="nueva-tarea-titulo" placeholder="Título de la tarea" required>
-            </div>
-            <div class="form-group">
-                <label>Materia</label>
-                <select id="nueva-tarea-materia" required>
-                    <option value="">Seleccionar...</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Prioridad</label>
-                <select id="nueva-tarea-prioridad" required>
-                    <option value="baja">Baja</option>
-                    <option value="media" selected>Media</option>
-                    <option value="alta">Alta</option>
-                </select>
-            </div>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px;">
-            <div class="form-group">
-                <label>Descripción</label>
-                <textarea id="nueva-tarea-descripcion" placeholder="Descripción de la tarea" rows="2"></textarea>
-            </div>
-            <div class="form-group">
-                <label>Fecha Vencimiento</label>
-                <input type="date" id="nueva-tarea-fecha" required>
-            </div>
-            <div class="form-group" style="display: flex; align-items: flex-end;">
-                <button type="submit" class="btn-primary" style="width: 100%;">
-                    ➕ Crear Tarea
-                </button>
-            </div>
-        </div>
-    </form>
-</div>
-
-
-
-
             <!-- TAREAS VIEW -->
             <div id="tareas-view" class="view-content hidden">
-                <div class="view-header">
-                    <h2>Gestión de Tareas</h2>
-                    <div class="view-stats">
-                        <span class="badge-success" id="tareas-actuales-count">0 actuales</span>
-                        <span class="badge-danger" id="tareas-vencidas-count">0 vencidas</span>
+                <h2 style="margin-bottom: 20px;">Gestión de Tareas</h2>
+                
+                <!-- FORMULARIO CREAR TAREA -->
+                <div class="card" style="margin-bottom: 30px;">
+                    <h3 style="margin-bottom: 20px;">➕ Crear Nueva Tarea</h3>
+                    <form id="form-nueva-tarea" onsubmit="crearNuevaTarea(event)">
+                        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                            <div class="form-group">
+                                <label>Título</label>
+                                <input type="text" id="nueva-tarea-titulo" placeholder="Título de la tarea" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Materia</label>
+                                <select id="nueva-tarea-materia" required>
+                                    <option value="">Seleccionar...</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Prioridad</label>
+                                <select id="nueva-tarea-prioridad" required>
+                                    <option value="baja">Baja</option>
+                                    <option value="media" selected>Media</option>
+                                    <option value="alta">Alta</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px;">
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <textarea id="nueva-tarea-descripcion" placeholder="Descripción de la tarea" rows="2"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Fecha Vencimiento</label>
+                                <input type="date" id="nueva-tarea-fecha" required>
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: flex-end;">
+                                <button type="submit" class="btn-primary" style="width: 100%;">
+                                    ➕ Crear Tarea
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- TABS DE TAREAS -->
+                <div class="tabs-container">
+                    <div class="tabs">
+                        <button class="tab active" onclick="filtrarTareas('todas')">📋 Todas</button>
+                        <button class="tab" onclick="filtrarTareas('pendientes')">⏳ Pendientes</button>
+                        <button class="tab" onclick="filtrarTareas('completadas')">✅ Completadas</button>
+                        <button class="tab" onclick="filtrarTareas('vencidas')">⚠️ Vencidas</button>
                     </div>
                 </div>
 
-                <div class="tareas-container">
-                    <div class="tareas-section">
-                        <h2>📋 Tareas Actuales</h2>
-                        <div class="card" id="tareas-actuales">
-                            <div class="loading-message">Cargando tareas actuales...</div>
-                        </div>
-                    </div>
-
-                    <div class="tareas-section">
-                        <h2>⚠️ Tareas Vencidas</h2>
-                        <div class="card" id="tareas-vencidas">
-                            <div class="loading-message">Cargando tareas vencidas...</div>
-                        </div>
-                    </div>
+                <!-- CONTENEDOR DE TAREAS -->
+                <div id="tareas-container" style="margin-top: 20px;">
+                    <div class="loading-message">Cargando tareas...</div>
                 </div>
             </div>
         </div>
     </div>
-
+    
+    <!-- SOLO main.js - ELIMINAR tareas.js -->
     <script src="js/main.js"></script>
 </body>
 </html>

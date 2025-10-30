@@ -811,3 +811,415 @@ textarea {
     resize: vertical;
     min-height: 60px;
 }
+
+
+
+/* Estilos para checkboxes */
+.tarea-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--accent-purple);
+}
+
+.tarea-checkbox {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 5px;
+}
+
+
+
+/* ==========================================
+   COMPONENTES DE TAREAS MEJORADOS
+   ========================================== */
+
+/* Tabs */
+.tabs-container {
+    margin-bottom: 25px;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 15px;
+}
+
+.tab {
+    padding: 12px 24px;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.tab:hover {
+    border-color: var(--accent-purple);
+    color: var(--accent-purple);
+    transform: translateY(-2px);
+}
+
+.tab.active {
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    border-color: var(--accent-purple);
+    color: white;
+    box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
+}
+
+/* Contenido de tabs */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Tarjetas de tareas mejoradas */
+.tarea-card {
+    background: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    border-left: 6px solid var(--accent-purple);
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.tarea-card:hover {
+    transform: translateX(8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.tarea-card.vencida {
+    border-left-color: var(--accent-red);
+}
+
+.tarea-card.completada {
+    border-left-color: var(--accent-green);
+    opacity: 0.8;
+}
+
+.tarea-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.tarea-titulo {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    flex: 1;
+}
+
+.tarea-acciones {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-icon {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.btn-icon:hover {
+    transform: scale(1.1);
+}
+
+.btn-success {
+    background: var(--accent-green);
+    color: var(--bg-primary);
+}
+
+.btn-secondary {
+    background: var(--accent-blue);
+    color: white;
+}
+
+.btn-danger {
+    background: var(--accent-red);
+    color: white;
+}
+
+.tarea-info {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.tarea-materia, .tarea-prioridad {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.tarea-materia {
+    background: rgba(157, 78, 221, 0.15);
+    color: var(--accent-purple);
+}
+
+.tarea-prioridad.alta {
+    background: rgba(255, 0, 110, 0.2);
+    color: var(--accent-red);
+}
+
+.tarea-prioridad.media {
+    background: rgba(255, 190, 11, 0.2);
+    color: var(--accent-yellow);
+}
+
+.tarea-prioridad.baja {
+    background: rgba(6, 255, 165, 0.2);
+    color: var(--accent-green);
+}
+
+.tarea-descripcion {
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.tarea-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tarea-fecha {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.tarea-fecha.vencida {
+    color: var(--accent-red);
+    font-weight: 700;
+}
+
+/* Estados vacíos */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary);
+}
+
+.empty-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+/* Grid del formulario */
+.form-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tabs {
+        flex-direction: column;
+    }
+    
+    .tarea-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .tarea-acciones {
+        align-self: flex-end;
+    }
+}
+
+
+/* ==========================================
+   COMPONENTES FALTANTES
+   ========================================== */
+
+/* Tabs */
+.tabs-container {
+    margin-bottom: 25px;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 15px;
+}
+
+.tab {
+    padding: 12px 24px;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.tab:hover {
+    border-color: var(--accent-purple);
+    color: var(--accent-purple);
+    transform: translateY(-2px);
+}
+
+.tab.active {
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    border-color: var(--accent-purple);
+    color: white;
+    box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
+}
+
+/* Tarjetas de tareas */
+.tarea-item {
+    background: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    border-left: 6px solid var(--accent-purple);
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.tarea-item:hover {
+    transform: translateX(8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.tarea-item.vencida {
+    border-left-color: var(--accent-red);
+}
+
+.tarea-item.completada {
+    border-left-color: var(--accent-green);
+    opacity: 0.8;
+}
+
+.tarea-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.tarea-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    flex: 1;
+}
+
+.tarea-clase {
+    background: rgba(157, 78, 221, 0.15);
+    color: var(--accent-purple);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.tarea-prioridad.alta {
+    background: rgba(255, 0, 110, 0.2);
+    color: var(--accent-red);
+}
+
+.tarea-prioridad.media {
+    background: rgba(255, 190, 11, 0.2);
+    color: var(--accent-yellow);
+}
+
+.tarea-prioridad.baja {
+    background: rgba(6, 255, 165, 0.2);
+    color: var(--accent-green);
+}
+
+.tarea-fecha {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 10px;
+}
+
+/* Tarjetas de clases */
+.clase-card {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 18px;
+    transition: var(--transition);
+    border: 2px solid transparent;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.clase-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+}
+
+.clase-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-purple);
+    box-shadow: var(--shadow-hover);
+}
+
+.clase-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.clase-card h3 {
+    margin-bottom: 12px;
+    color: var(--accent-purple);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.tareas-count {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 12px;
+    background: rgba(157, 78, 221, 0.1);
+    border-radius: 8px;
+    display: inline-block;
+}
