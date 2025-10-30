@@ -23,6 +23,7 @@ function inicializarApp() {
     cargarPerfil();
     cargarEstadisticas();
     configurarNavegacion();
+    cargarNotificaciones(); // ← AGREGAR ESTA LÍNEA
 }
 
 function verificarAutenticacion() {
@@ -535,5 +536,160 @@ function logout() {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         window.location.href = 'login.html';
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ==========================================
+// NOTIFICACIONES
+// ==========================================
+let notificaciones = [];
+
+// Cargar notificaciones al iniciar la app
+async function cargarNotificaciones() {
+    try {
+        console.log('🔔 Cargando notificaciones...');
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${API_URL}/notificaciones`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (response.ok) {
+            notificaciones = await response.json();
+            console.log('✅ Notificaciones cargadas:', notificaciones.length);
+            actualizarBadgeNotificaciones();
+            mostrarNotificaciones();
+        }
+    } catch (error) {
+        console.error('❌ Error cargando notificaciones:', error);
+    }
+}
+
+function actualizarBadgeNotificaciones() {
+    const noLeidas = notificaciones.filter(n => !n.leida).length;
+    const badge = document.getElementById('notification-count');
+    if (badge) {
+        badge.textContent = noLeidas;
+        badge.style.display = noLeidas > 0 ? 'flex' : 'none';
+    }
+}
+
+function mostrarNotificaciones() {
+    const container = document.getElementById('notifications-list');
+    if (!container) return;
+
+    if (notificaciones.length === 0) {
+        container.innerHTML = `
+            <div style="text-align: center; padding: 40px;">
+                <div style="font-size: 48px; margin-bottom: 10px;">🔔</div>
+                <h4>No hay notificaciones</h4>
+                <p style="color: var(--text-secondary);">¡Todo al día!</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = notificaciones.map(notif => `
+        <div class="notification-item ${!notif.leida ? 'no-leida' : ''} ${notif.reciente ? 'reciente' : ''}">
+            <div class="notification-header">
+                <div class="notification-title">${notif.titulo}</div>
+                <div class="notification-time">${formatearTiempo(notif.fecha_creacion)}</div>
+            </div>
+            <p class="notification-message">${notif.mensaje}</p>
+            <div class="notification-actions">
+                <span class="notification-tipo tipo-${notif.tipo}">${notif.tipo}</span>
+                ${!notif.leida ? 
+                    `<button class="btn-small" onclick="marcarNotificacionLeida(${notif.id})">✅ Leída</button>` : 
+                    ''
+                }
+                <button class="btn-small btn-danger" onclick="eliminarNotificacion(${notif.id})">🗑️</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function formatearTiempo(fecha) {
+    const ahora = new Date();
+    const notifFecha = new Date(fecha);
+    const diffMs = ahora - notifFecha;
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+
+    if (diffMins < 1) return 'Ahora';
+    if (diffMins < 60) return `Hace ${diffMins} min`;
+    if (diffHours < 24) return `Hace ${diffHours} h`;
+    if (diffDays < 7) return `Hace ${diffDays} d`;
+    return notifFecha.toLocaleDateString();
+}
+
+function toggleNotifications() {
+    const panel = document.getElementById('notifications-panel');
+    panel.classList.toggle('hidden');
+    
+    if (!panel.classList.contains('hidden')) {
+        cargarNotificaciones();
+    }
+}
+
+async function marcarNotificacionLeida(notificacionId) {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${API_URL}/notificaciones/${notificacionId}/leer`, {
+            method: 'PUT',
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (response.ok) {
+            // Actualizar localmente
+            const notifIndex = notificaciones.findIndex(n => n.id === notificacionId);
+            if (notifIndex !== -1) {
+                notificaciones[notifIndex].leida = true;
+            }
+            actualizarBadgeNotificaciones();
+            mostrarNotificaciones();
+        }
+    } catch (error) {
+        console.error('❌ Error marcando notificación:', error);
+    }
+}
+
+async function eliminarNotificacion(notificacionId) {
+    if (!confirm('¿Eliminar esta notificación?')) return;
+    
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${API_URL}/notificaciones/${notificacionId}`, {
+            method: 'DELETE',
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (response.ok) {
+            // Eliminar localmente
+            notificaciones = notificaciones.filter(n => n.id !== notificacionId);
+            actualizarBadgeNotificaciones();
+            mostrarNotificaciones();
+        }
+    } catch (error) {
+        console.error('❌ Error eliminando notificación:', error);
     }
 }
